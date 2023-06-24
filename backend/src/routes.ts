@@ -10,6 +10,10 @@ import { ListCategoryController } from './controllers/category/ListCategoryContr
 
 import { CreateProductController } from './controllers/product/CreateProductController';
 import { ListByCategoryController } from './controllers/product/ListByCategoryController';
+
+import { CreateOrderController } from './controllers/order/CreateOrderController';
+import { RemoveOrderController } from './controllers/order/RemoveOrderController';
+
 import { isAuthenticated } from './middlewares/isAuthenticated';
 
 import uploadConfig from './config/multer'
@@ -31,5 +35,10 @@ router.get('/show-categories', isAuthenticated, new ListCategoryController().han
 //-- rotas product --
 router.post('/product', isAuthenticated, upload.single('file'), new CreateProductController().handle)
 router.get('/category/product', isAuthenticated, new ListByCategoryController().handle)
+
+
+//-- rotas order --
+router.post('/order', isAuthenticated, new CreateOrderController().handle)
+router.get('/remove-order', isAuthenticated, new RemoveOrderController().handle)
 
 export { router };
