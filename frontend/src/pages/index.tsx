@@ -47,10 +47,10 @@ export default function Home() {
   return (
     <>
     <Head>
-      <title>SujeitoPizza - Faça seu login</title> 
+      <title>MyFood - Faça seu login</title> 
     </Head>
     <div className={styles.containerCenter}>
-      <Image src={logoImg} alt="Logo Sujeito Pizzaria" />
+      <Image src={logoImg} alt="Logo MyFood" />
 
       <div className={styles.login}>
         <form onSubmit={handleLogin}>
