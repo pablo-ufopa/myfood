@@ -4,14 +4,17 @@ import Head from 'next/head'
 import Image from 'next/image';
 import styles from '../../styles/home.module.scss';
 
-import logoImg from '../../public/LOGO.png';
+import logoImg from '../../public/logo.png';
 
 import { Input } from '../components/ui/Input'
 import { Button } from '../components/ui/Button'
+import { toast } from 'react-toastify'
 
 import { AuthContext } from '../contexts/AuthContext'
 
 import Link from 'next/link';
+
+import { canSSRGuest } from '../utils/canSSRGuest';
 
 export default function Home() {
   const { signIn } = useContext(AuthContext)
@@ -25,7 +28,7 @@ export default function Home() {
     event.preventDefault();
 
     if(email === '' || password === ''){
-      alert("PREENCHA OS DADOS")
+      toast.error("Preencha os campos")
       return;
     }
 
@@ -82,3 +85,11 @@ export default function Home() {
     </>
   )
 }
+
+
+export const getServerSideProps = canSSRGuest(async (ctx) => {
+  
+  return {
+    props: {}
+  }
+})
